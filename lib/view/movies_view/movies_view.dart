@@ -13,10 +13,12 @@ class MoviesView extends StatefulWidget {
   const MoviesView({Key? key}) : super(key: key);
 
   @override
-  _MoviesViewState createState() => _MoviesViewState();
+  _MoviesViewState createState() =>
+      _MoviesViewState();
 }
 
-class _MoviesViewState extends State<MoviesView> {
+class _MoviesViewState
+    extends State<MoviesView> {
   static final MovieRemoteDataSource _movieRemoteDataSource =
       MovieRemoteDataSource(Dio());
   static final MovieDataRepository _movieDataRepository =

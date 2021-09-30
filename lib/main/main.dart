@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teste_tokenlab/view/movies_view/movies_view.dart';
+import 'package:teste_tokenlab/view/main_content_view/main_content_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +12,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light(),
-        home: const MoviesView(),
+        home: const MainContentView(),
       );
 }

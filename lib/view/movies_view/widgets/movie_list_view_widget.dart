@@ -81,12 +81,11 @@ class MovieListViewWidget extends StatelessWidget {
                     padding: const EdgeInsets.all(4),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
+                        Navigator.of(context, rootNavigator: true).push(
                           MaterialPageRoute(
                               builder: (context) =>
                                   MovieDetailsView(
-                                      movieId: movies[index].id)),
+                                      movieId: movies[index].id),),
                         );
                       },
                       style: ButtonStyle(
