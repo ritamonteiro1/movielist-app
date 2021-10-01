@@ -1,18 +1,15 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'production_company_response.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ProductionCompanyResponse {
   ProductionCompanyResponse(this.name, this.originCountry);
 
-  ProductionCompanyResponse.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    originCountry = json['origin_country'];
-  }
+  factory ProductionCompanyResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductionCompanyResponseFromJson(json);
 
-  late final String? name;
-  late final String? originCountry;
+  final String name;
+  final String originCountry;
 
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['name'] = name;
-    data['origin_country'] = originCountry;
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$ProductionCompanyResponseToJson(this);
 }

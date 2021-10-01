@@ -6,10 +6,10 @@ import 'package:teste_tokenlab/extensions/string_extensions.dart';
 extension ListMovieResponseExtensions on List<MovieResponse> {
 
   List<MovieModel> toMovieListModel () => map((item) => MovieModel(
-        item.id ?? -1,
-        item.voteAverage ?? -1,
-        item.title.isBlank() ? '' : item.title ?? '',
-        item.posterUrl ?? '',
-        item.releaseDate.convertDateToLocaleBr() ?? ''))
+        item.id,
+        item.voteAverage,
+        item.title.isBlank() ? '-' : item.title,
+        item.posterUrl,
+        item.releaseDate.convertDateToLocaleBr()))
         .toList();
 }
