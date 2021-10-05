@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:teste_tokenlab/generated/l10n.dart';
 
 class AboutEnterpriseView extends StatelessWidget {
   const AboutEnterpriseView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(title: const Text('TokenLab')),
+        appBar:
+            AppBar(title: Text(S.of(context).aboutEnterpriseViewAppBarTitle)),
         body: Container(
           padding: const EdgeInsets.all(20),
-          child: const Center(
+          child: Center(
             child: Text(
-              'Somos uma empresa de inovação digital que tem como '
-              'principal propósito transformar positivamente o'
-              ' mundo através da tecnologia. ', style: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.normal
-            ),
+              S.of(context).aboutEnterpriseViewText,
+              style:
+                  const TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
               textAlign: TextAlign.center,
             ),
           ),

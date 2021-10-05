@@ -9,15 +9,15 @@ part of 'movie_details_response.dart';
 MovieDetailsResponse _$MovieDetailsResponseFromJson(
         Map<String, dynamic> json) =>
     MovieDetailsResponse(
-      (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      json['original_title'] as String?,
-      json['poster_rrl'] as String?,
-      (json['production_companies'] as List<dynamic>?)
-          ?.map((e) =>
+      (json['genres'] as List<dynamic>).map((e) => e as String).toList(),
+      json['original_title'] as String,
+      json['poster_url'] as String,
+      (json['production_companies'] as List<dynamic>)
+          .map((e) =>
               ProductionCompanyResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
-      json['title'] as String?,
-      (json['vote_average'] as num?)?.toDouble(),
+      json['title'] as String,
+      (json['vote_average'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$MovieDetailsResponseToJson(

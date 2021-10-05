@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:teste_tokenlab/domain/app_flow/app_flow.dart';
 import 'package:teste_tokenlab/view/movies_view/movies_view.dart';
 import 'package:teste_tokenlab/view/movies_view/widgets/about_enterprise_view_widget.dart';
+import 'package:teste_tokenlab/generated/l10n.dart';
 
 class MainContentView extends StatefulWidget {
   const MainContentView({Key? key}) : super(key: key);
@@ -11,32 +12,41 @@ class MainContentView extends StatefulWidget {
 }
 
 class _MainContentViewState extends State<MainContentView> {
-
+  Locale? _locale;
+  late List<AppFlow> _appFlowList;
   var _currentBarIndex = 0;
-  final appFlowList = <AppFlow>[
-    AppFlow(
-      'Filmes',
-      Icons.image_outlined,
-      GlobalKey<NavigatorState>(),
-    ),
-    AppFlow(
-      'Sobre a empresa',
-      Icons.description,
-      GlobalKey<NavigatorState>(),
-    )
-  ];
 
+  @override
+  void didChangeDependencies() {
+    final newLocale = Localizations.localeOf(context);
+    if(newLocale != _locale){
+      _locale = newLocale;
+      _appFlowList = <AppFlow>[
+        AppFlow(
+          S.of(context).mainContentViewBottomNavigationMovies,
+          Icons.image_outlined,
+          GlobalKey<NavigatorState>(),
+        ),
+        AppFlow(
+          S.of(context).mainContentViewBottomNavigationAboutEnterprise,
+          Icons.description,
+          GlobalKey<NavigatorState>(),
+        )
+      ];
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final currentFlow = appFlowList[_currentBarIndex];
+    final currentFlow = _appFlowList[_currentBarIndex];
     return WillPopScope(
       onWillPop: () async =>
       !await currentFlow.navigatorKey.currentState!.maybePop(),
       child: Scaffold(
         body: IndexedStack(
           index: _currentBarIndex,
-          children: appFlowList.map(
+          children: _appFlowList.map(
             (appFlow) =>     Navigator(
               key: appFlow.navigatorKey,
               onGenerateRoute: (settings) =>
@@ -51,7 +61,7 @@ class _MainContentViewState extends State<MainContentView> {
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.white,
           currentIndex: _currentBarIndex,
-          items: appFlowList
+          items: _appFlowList
               .map(
                 (flow) =>
                 BottomNavigationBarItem(

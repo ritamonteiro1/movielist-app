@@ -3,6 +3,7 @@ import 'package:teste_tokenlab/constants/constants_images.dart';
 import 'package:teste_tokenlab/domain/movie_details/details/movie_details_model.dart';
 import 'package:teste_tokenlab/view/movie_details_view/widgets/genre_list_view_movie_details_widget.dart';
 import 'package:teste_tokenlab/view/movie_details_view/widgets/production_company_list_view_movie_details_widget.dart';
+import 'package:teste_tokenlab/generated/l10n.dart';
 
 class SuccessfullyRequestMovieDetails extends StatelessWidget {
   const SuccessfullyRequestMovieDetails({required this.movieDetails, Key? key})
@@ -12,7 +13,8 @@ class SuccessfullyRequestMovieDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('Detalhes do filme'),
+          title: Text(
+              S.of(context).successfullyRequestMovieDetailsViewAppBarTitle),
         ),
         body: Padding(
           padding: const EdgeInsets.only(left: 6, top: 3, right: 6, bottom: 3),
@@ -33,8 +35,10 @@ class SuccessfullyRequestMovieDetails extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        'Classificação:',
+                      Text(
+                        S
+                            .of(context)
+                            .successfullyRequestMovieDetailsViewVoteAverageText,
                       ),
                       const SizedBox(
                         width: 2,
@@ -67,9 +71,11 @@ class SuccessfullyRequestMovieDetails extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text(
-                    'Título original:',
-                    style: TextStyle(
+                  Text(
+                    S
+                        .of(context)
+                        .successfullyRequestMovieDetailsViewTitleOriginText,
+                    style: const TextStyle(
                         color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(
@@ -79,9 +85,10 @@ class SuccessfullyRequestMovieDetails extends StatelessWidget {
                   const SizedBox(
                     height: 12,
                   ),
-                  const Text(
-                    'Gênero:',
-                    style: TextStyle(
+                  Text(
+                    S.of(context).successfullyRequestMovieDetailsViewGenreText(
+                        movieDetails.genres.length),
+                    style: const TextStyle(
                         color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(
@@ -92,9 +99,11 @@ class SuccessfullyRequestMovieDetails extends StatelessWidget {
                   const SizedBox(
                     height: 12,
                   ),
-                  const Text(
-                    'Empresas que produziram:',
-                    style: TextStyle(
+                  Text(
+                    S.of(context)
+                        .successfullyRequestMovieDetailsViewProductionCompanies(
+                            movieDetails.productionCompanies.length),
+                    style: const TextStyle(
                         color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(

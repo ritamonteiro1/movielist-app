@@ -176,6 +176,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_localizations",
+      "rootUri": "file:///C:/src/flutter/packages/flutter_localizations",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///C:/src/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -410,7 +416,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-10-01T13:23:47.989437Z",
+  "generated": "2021-10-04T20:45:03.574019Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }

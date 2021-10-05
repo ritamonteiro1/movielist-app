@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:teste_tokenlab/constants/constants_images.dart';
 import 'package:teste_tokenlab/domain/movies/movie_model.dart';
 import 'package:teste_tokenlab/view/movie_details_view/movie_details_view.dart';
+import 'package:teste_tokenlab/generated/l10n.dart';
+
 
 class MovieListViewWidget extends StatelessWidget {
   const MovieListViewWidget({required this.movies, Key? key}) : super(key: key);
@@ -92,9 +94,9 @@ class MovieListViewWidget extends StatelessWidget {
                         backgroundColor:
                         MaterialStateProperty.all(Colors.red),
                       ),
-                      child: const Text(
-                        'VER DETALHES',
-                        style: TextStyle(
+                      child:  Text(
+                        S.of(context).movieListViewButtonText,
+                        style: const TextStyle(
                             color: Colors.white, fontSize: 16),
                       ),
                     ),

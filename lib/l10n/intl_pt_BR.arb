@@ -1,0 +1,20 @@
+{
+  "@@ locale": "pt_BR",
+  "successfullyRequestMoviesViewAppBarTitle": "Lista de filmes",
+  "movieListViewButtonText": "VER DETALHES",
+  "mainContentViewBottomNavigationMovies": "Filmes",
+  "mainContentViewBottomNavigationAboutEnterprise": "Sobre a empresa",
+  "aboutEnterpriseViewAppBarTitle": "TokenLab",
+  "aboutEnterpriseViewText": "Somos uma empresa de inovação digital que tem como principal propósito transformar positivamente o mundo através da tecnologia. ",
+  "errorViewAppBarTitle": "Ops",
+  "errorViewText": "Ocorreu um erro!",
+  "errorViewButtonText": "Tentar novamente",
+  "loadingViewAppBarTitle": "Carregando...",
+  "successfullyRequestMovieDetailsViewAppBarTitle": "Detalhes do filme",
+  "successfullyRequestMovieDetailsViewVoteAverageText": "Avaliação:",
+  "successfullyRequestMovieDetailsViewTitleOriginText": "Título original:",
+  "successfullyRequestMovieDetailsViewGenreText": "{quantity, plural, one{Gênero:} other{Gêneros:}}",
+  "successfullyRequestMovieDetailsViewProductionCompanies": "{quantity, plural, one{Empresa que produziu:} other{Empresas que produziram:}}",
+  "productionCompanyListViewName": "Nome:",
+  "productionCompanyCountry": "País:"
+}
