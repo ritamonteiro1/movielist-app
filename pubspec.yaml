@@ -33,6 +33,7 @@ dependencies:
   json_serializable: ^4.1.4
   flutter_localizations:
     sdk: flutter
+  fluro: ^2.0.3
 
 
 dev_dependencies:

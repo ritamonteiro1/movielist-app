@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teste_tokenlab/constants/constants_images.dart';
 import 'package:teste_tokenlab/domain/movies/movie_model.dart';
-import 'package:teste_tokenlab/view/movie_details_view/movie_details_view.dart';
 import 'package:teste_tokenlab/generated/l10n.dart';
 
 
@@ -83,11 +82,8 @@ class MovieListViewWidget extends StatelessWidget {
                     padding: const EdgeInsets.all(4),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context, rootNavigator: true).push(
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  MovieDetailsView(
-                                      movieId: movies[index].id),),
+                        Navigator.of(context, rootNavigator: true).pushNamed(
+                          'movie-details/${movies[index].id}'
                         );
                       },
                       style: ButtonStyle(
