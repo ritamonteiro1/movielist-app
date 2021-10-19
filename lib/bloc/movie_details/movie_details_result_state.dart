@@ -8,6 +8,5 @@ class MovieDetailsErrorState extends MovieDetailsResultState {}
 
 class MovieDetailsSuccessState extends MovieDetailsResultState {
   MovieDetailsSuccessState(this.movieDetails);
-
   final MovieDetailsModel movieDetails;
 }

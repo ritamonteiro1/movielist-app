@@ -6,7 +6,8 @@ import 'package:teste_tokenlab/view/movie_details_view/widgets/production_compan
 import 'package:teste_tokenlab/generated/l10n.dart';
 
 class SuccessfullyRequestMovieDetails extends StatelessWidget {
-  const SuccessfullyRequestMovieDetails({required this.movieDetails, Key? key})
+  const
+  SuccessfullyRequestMovieDetails({required this.movieDetails, Key? key})
       : super(key: key);
   final MovieDetailsModel movieDetails;
 

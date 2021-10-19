@@ -9,7 +9,7 @@ class ErrorViewWidget extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text(S.of(context).aboutEnterpriseViewAppBarTitle),
+          title: Text(S.of(context).errorViewAppBarTitle),
           elevation: 8,
           backgroundColor: Colors.blue,
         ),
