@@ -1,0 +1,1 @@
+class EmptyFavoriteListException implements Exception {}

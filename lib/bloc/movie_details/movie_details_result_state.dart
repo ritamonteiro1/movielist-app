@@ -1,12 +1,12 @@
-import 'package:teste_tokenlab/domain/movie_details/details/movie_details_model.dart';
+import 'package:teste_tokenlab/domain/movie_details/details/movie_details.dart';
 
 abstract class MovieDetailsResultState {}
 
-class MovieDetailsLoadingState extends MovieDetailsResultState {}
+class MovieDetailsLoadingState implements MovieDetailsResultState {}
 
-class MovieDetailsErrorState extends MovieDetailsResultState {}
+class MovieDetailsErrorState implements MovieDetailsResultState {}
 
-class MovieDetailsSuccessState extends MovieDetailsResultState {
+class MovieDetailsSuccessState implements MovieDetailsResultState {
   MovieDetailsSuccessState(this.movieDetails);
-  final MovieDetailsModel movieDetails;
+  final MovieDetails movieDetails;
 }

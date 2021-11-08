@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:teste_tokenlab/domain/app_flow/app_flow.dart';
-import 'package:teste_tokenlab/view/movies_view/movies_view.dart';
-import 'package:teste_tokenlab/view/movies_view/widgets/about_enterprise_view_widget.dart';
+import 'package:teste_tokenlab/view/movies_view/movies_screen.dart';
+import 'package:teste_tokenlab/view/movies_view/widgets/about_enterprise_screen.dart';
 import 'package:teste_tokenlab/generated/l10n.dart';
+import 'package:teste_tokenlab/view/movies_view/widgets/favorite_movies_screen.dart';
 
 class MainContentView extends StatefulWidget {
   const MainContentView({Key? key}) : super(key: key);
@@ -31,6 +32,11 @@ class _MainContentViewState extends State<MainContentView> {
           S.of(context).mainContentViewBottomNavigationAboutEnterprise,
           Icons.description,
           GlobalKey<NavigatorState>(),
+        ),
+        AppFlow(
+          S.of(context).mainContentViewBottomNavigationFavoriteMovies,
+          Icons.star,
+          GlobalKey<NavigatorState>(),
         )
       ];
     }
@@ -53,8 +59,10 @@ class _MainContentViewState extends State<MainContentView> {
                   MaterialPageRoute(
                       settings: settings, builder: (context) =>
                   (_currentBarIndex == 0)
-                      ? const MoviesView()
-                      : const AboutEnterpriseView()),
+                      ? const MoviesScreen()
+                      : (_currentBarIndex == 1)
+                      ? const AboutEnterpriseScreen()
+                      : const FavoriteMoviesScreen(),),
             )
           ).toList(),
         ),

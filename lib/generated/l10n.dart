@@ -223,6 +223,116 @@ class S {
       args: [],
     );
   }
+
+  /// `Favorite movies`
+  String get favoriteMoviesViewAppBarTitle {
+    return Intl.message(
+      'Favorite movies',
+      name: 'favoriteMoviesViewAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorites`
+  String get mainContentViewBottomNavigationFavoriteMovies {
+    return Intl.message(
+      'Favorites',
+      name: 'mainContentViewBottomNavigationFavoriteMovies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To favorite:`
+  String get successfullyRequestMovieDetailsViewToFavoriteMovie {
+    return Intl.message(
+      'To favorite:',
+      name: 'successfullyRequestMovieDetailsViewToFavoriteMovie',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ops...`
+  String get errorAsyncSnapshotFavoriteMoviesTitleAppBar {
+    return Intl.message(
+      'Ops...',
+      name: 'errorAsyncSnapshotFavoriteMoviesTitleAppBar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No favorite movies!`
+  String get errorAsyncSnapshotFavoriteMoviesBodyText {
+    return Intl.message(
+      'No favorite movies!',
+      name: 'errorAsyncSnapshotFavoriteMoviesBodyText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Message:`
+  String get alertDialogTitle {
+    return Intl.message(
+      'Message:',
+      name: 'alertDialogTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get alertDialogButtonText {
+    return Intl.message(
+      'Ok',
+      name: 'alertDialogButtonText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Movie added to favorite list!`
+  String get alertDialogMessageSuccessAddMovie {
+    return Intl.message(
+      'Movie added to favorite list!',
+      name: 'alertDialogMessageSuccessAddMovie',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error adding movie to favorite list!`
+  String get alertDialogMessageErrorAddMovie {
+    return Intl.message(
+      'Error adding movie to favorite list!',
+      name: 'alertDialogMessageErrorAddMovie',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Movie removed from favorite list!`
+  String get alertDialogMessageSuccessRemoveMovie {
+    return Intl.message(
+      'Movie removed from favorite list!',
+      name: 'alertDialogMessageSuccessRemoveMovie',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error removing movie from favorite list!`
+  String get alertDialogMessageErrorRemoveMovie {
+    return Intl.message(
+      'Error removing movie from favorite list!',
+      name: 'alertDialogMessageErrorRemoveMovie',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

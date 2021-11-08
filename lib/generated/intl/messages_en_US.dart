@@ -31,15 +31,36 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("TokenLab"),
         "aboutEnterpriseViewText": MessageLookupByLibrary.simpleMessage(
             "We are a digital innovation company whose main purpose is to positively transform the world through technology."),
+        "alertDialogButtonText": MessageLookupByLibrary.simpleMessage("Ok"),
+        "alertDialogMessageErrorAddMovie": MessageLookupByLibrary.simpleMessage(
+            "Error adding movie to favorite list!"),
+        "alertDialogMessageErrorRemoveMovie":
+            MessageLookupByLibrary.simpleMessage(
+                "Error removing movie from favorite list!"),
+        "alertDialogMessageSuccessAddMovie":
+            MessageLookupByLibrary.simpleMessage(
+                "Movie added to favorite list!"),
+        "alertDialogMessageSuccessRemoveMovie":
+            MessageLookupByLibrary.simpleMessage(
+                "Movie removed from favorite list!"),
+        "alertDialogTitle": MessageLookupByLibrary.simpleMessage("Message:"),
+        "errorAsyncSnapshotFavoriteMoviesBodyText":
+            MessageLookupByLibrary.simpleMessage("No favorite movies!"),
+        "errorAsyncSnapshotFavoriteMoviesTitleAppBar":
+            MessageLookupByLibrary.simpleMessage("Ops..."),
         "errorViewAppBarTitle": MessageLookupByLibrary.simpleMessage("Ops"),
         "errorViewButtonText":
             MessageLookupByLibrary.simpleMessage("Try again"),
         "errorViewText":
             MessageLookupByLibrary.simpleMessage("Occurred error!"),
+        "favoriteMoviesViewAppBarTitle":
+            MessageLookupByLibrary.simpleMessage("Favorite movies"),
         "loadingViewAppBarTitle":
             MessageLookupByLibrary.simpleMessage("Loading..."),
         "mainContentViewBottomNavigationAboutEnterprise":
             MessageLookupByLibrary.simpleMessage("About enterprise"),
+        "mainContentViewBottomNavigationFavoriteMovies":
+            MessageLookupByLibrary.simpleMessage("Favorites"),
         "mainContentViewBottomNavigationMovies":
             MessageLookupByLibrary.simpleMessage("Movies"),
         "movieListViewButtonText":
@@ -54,6 +75,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "successfullyRequestMovieDetailsViewProductionCompanies": m1,
         "successfullyRequestMovieDetailsViewTitleOriginText":
             MessageLookupByLibrary.simpleMessage("Origin title:"),
+        "successfullyRequestMovieDetailsViewToFavoriteMovie":
+            MessageLookupByLibrary.simpleMessage("To favorite:"),
         "successfullyRequestMovieDetailsViewVoteAverageText":
             MessageLookupByLibrary.simpleMessage("Rating:"),
         "successfullyRequestMoviesViewAppBarTitle":

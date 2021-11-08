@@ -16,5 +16,16 @@
   "successfullyRequestMovieDetailsViewGenreText": "{quantity, plural, one{Gênero:} other{Gêneros:}}",
   "successfullyRequestMovieDetailsViewProductionCompanies": "{quantity, plural, one{Empresa que produziu:} other{Empresas que produziram:}}",
   "productionCompanyListViewName": "Nome:",
-  "productionCompanyCountry": "País:"
+  "productionCompanyCountry": "País:",
+  "favoriteMoviesViewAppBarTitle": "Filmes favoritos",
+  "mainContentViewBottomNavigationFavoriteMovies": "Favoritos",
+  "successfullyRequestMovieDetailsViewToFavoriteMovie": "Favoritar:",
+  "errorAsyncSnapshotFavoriteMoviesTitleAppBar": "Ops...",
+  "errorAsyncSnapshotFavoriteMoviesBodyText": "Sem filmes favoritos!",
+  "alertDialogTitle": "Messagem:",
+  "alertDialogButtonText": "Ok",
+  "alertDialogMessageSuccessAddMovie": "Filme adicionado na lista de favoritos!",
+  "alertDialogMessageErrorAddMovie": "Erro ao adicionar filme na lista de favoritos!",
+  "alertDialogMessageSuccessRemoveMovie": "Filme removido da lista de favoritos!",
+  "alertDialogMessageErrorRemoveMovie": "Erro ao remover filme da lista de favoritos!"
 }

@@ -1,14 +1,14 @@
 
-import 'package:teste_tokenlab/domain/movies/movie_model.dart';
+import 'package:teste_tokenlab/domain/movies/movie.dart';
 
 abstract class MoviesResultState {}
 
-class MoviesLoadingState extends MoviesResultState {}
+class MoviesLoadingState implements MoviesResultState {}
 
-class MoviesErrorState extends MoviesResultState {}
+class MoviesErrorState implements MoviesResultState {}
 
-class MoviesSuccessState extends MoviesResultState {
+class MoviesSuccessState implements MoviesResultState {
   MoviesSuccessState(this.movies);
-  final List<MovieModel> movies;
+  final List<Movie> movies;
 
 }
