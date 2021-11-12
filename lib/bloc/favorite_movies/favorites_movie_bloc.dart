@@ -6,26 +6,37 @@ import 'package:teste_tokenlab/data/repository/movie_data_repository.dart';
 
 class FavoritesMovieBloc {
   FavoritesMovieBloc(this._movieRepository) {
-    _subscriptions.add(
-      _fetchFavoriteMoviesId().listen(_behaviorSubjectFavoriteMovies.add),
-    );
+    _subscriptions.add(_behaviorSubjectCallbackFavoriteMovies.stream
+        .flatMap((_) => _fetchFavoriteMoviesId())
+        .listen(_behaviorSubjectFavoriteMovies.add));
   }
 
   final MovieDataRepository _movieRepository;
-
   final _subscriptions = CompositeSubscription();
 
   Stream<FavoritesMovieResultState> get favoriteMoviesResultState =>
       _behaviorSubjectFavoriteMovies.stream;
   final _behaviorSubjectFavoriteMovies =
-  BehaviorSubject<FavoritesMovieResultState>.seeded(
-      FavoritesMovieLoadingState());
+      BehaviorSubject<FavoritesMovieResultState>.seeded(
+          FavoritesMovieLoadingState());
+
+  Sink<void> get favoriteMoviesCallback =>
+      _behaviorSubjectCallbackFavoriteMovies.sink;
+
+  Stream<void> get favoriteMoviesCallbackOutput =>
+      _behaviorSubjectCallbackFavoriteMovies.stream;
+  final _behaviorSubjectCallbackFavoriteMovies = BehaviorSubject<void>();
 
   Stream<FavoritesMovieResultState> _fetchFavoriteMoviesId() async* {
     yield FavoritesMovieLoadingState();
+
     try {
-      yield FavoritesMovieSuccessState(
-          await _movieRepository.fetchFavoriteMovies());
+      final favoriteMovies = await _movieRepository.fetchFavoriteMovies();
+      if (favoriteMovies.isNotEmpty) {
+        yield FavoritesMovieSuccessState(favoriteMovies);
+      } else {
+        yield FavoritesMovieNoResultState();
+      }
     } catch (EmptyFavoriteListException) {
       yield FavoritesMovieNoResultState();
     }
@@ -34,5 +45,6 @@ class FavoritesMovieBloc {
   void dispose() {
     _behaviorSubjectFavoriteMovies.close();
     _subscriptions.dispose();
+    _behaviorSubjectCallbackFavoriteMovies.close();
   }
 }

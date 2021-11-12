@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:teste_tokenlab/generated/l10n.dart';
 
 class ErrorWidgetView extends StatelessWidget {
-  const ErrorWidgetView({required this.function, Key? key}) : super(key: key);
+  const ErrorWidgetView({
+    required this.function,
+    Key? key,
+  }) : super(key: key);
   final Function() function;
 
   @override

@@ -3,7 +3,10 @@ import 'package:teste_tokenlab/data/remote/movie/model/movie_details/details/mov
 import 'package:teste_tokenlab/data/remote/movie/model/movies/movie_rm.dart';
 
 class MovieRemoteDataSource {
-  MovieRemoteDataSource(this._dio);
+  MovieRemoteDataSource(
+    this._dio,
+  );
+
   final Dio _dio;
   static const String baseUrlMovieList =
       'https://desafio-mobile.nyc3.digitaloceanspaces.com/movies';

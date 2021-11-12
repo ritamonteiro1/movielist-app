@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:teste_tokenlab/generated/l10n.dart';
 
 class AboutEnterpriseScreen extends StatelessWidget {
-  const AboutEnterpriseScreen({Key? key}) : super(key: key);
+  const AboutEnterpriseScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(

@@ -44,7 +44,6 @@ class MovieDetailsBloc {
       _movieDetails = await _movieRepository.fetchMovieDetails(_movieId);
       yield MovieDetailsSuccessState(_movieDetails);
     } catch (e) {
-      print(e);
       yield MovieDetailsErrorState();
     }
   }
