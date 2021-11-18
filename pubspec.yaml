@@ -39,6 +39,8 @@ dependencies:
   path_provider: ^2.0.4
   provider: ^6.0.1
   focus_detector: ^2.0.0
+  domain:
+    path: ./domain
 
 
 dev_dependencies:

@@ -1,9 +1,10 @@
+import 'package:domain/domain/data_repository/movie_data_repository.dart';
+import 'package:domain/domain/model/movie_details/details/movie_details.dart';
+import 'package:domain/domain/model/movies/movie.dart';
 import 'package:teste_tokenlab/data/cache_model/cache_data_source/movie_cache_data_source.dart';
 import 'package:teste_tokenlab/data/cache_model/model/movies/movie_cm.dart';
 import 'package:teste_tokenlab/data/remote/movie/remote_data_source/movie_remote_data_source.dart';
-import 'package:teste_tokenlab/data/repository/movie_data_repository.dart';
-import 'package:teste_tokenlab/domain/movie_details/details/movie_details.dart';
-import 'package:teste_tokenlab/domain/movies/movie.dart';
+
 import 'package:teste_tokenlab/data/mapper/remote_to_cache.dart';
 import 'package:teste_tokenlab/data/mapper/cache_to_domain.dart';
 
@@ -32,7 +33,7 @@ class MovieRepository implements MovieDataRepository {
       final movieDetailsCM =
           await _movieCacheDataSource.getMovieDetails(movieId);
       final favoriteMovieIdListCM =
-      await _movieCacheDataSource.getFavoriteMovieIdList();
+          await _movieCacheDataSource.getFavoriteMovieIdList();
       final movieDetailsDM = movieDetailsCM.toMovieDetailsDM();
       movieDetailsDM.isFavorite =
           favoriteMovieIdListCM.contains(movieDetailsDM.id);
@@ -58,7 +59,8 @@ class MovieRepository implements MovieDataRepository {
     favoriteMovieIdListCM =
         await _movieCacheDataSource.getFavoriteMovieIdList();
     movieListCM = await _movieCacheDataSource.getMovieList();
-    return movieListCM.toMovieListDM()
+    return movieListCM
+        .toMovieListDM()
         .where((movieDM) => favoriteMovieIdListCM.contains(movieDM.id))
         .toList();
   }

@@ -4,16 +4,16 @@ import 'package:provider/provider.dart';
 import 'package:teste_tokenlab/data/cache_model/model/movies/movie_cm.dart';
 import 'package:teste_tokenlab/data/cache_model/model/movies_details/details/movie_details_cm.dart';
 import 'package:teste_tokenlab/data/cache_model/model/movies_details/production_company/production_company_cm.dart';
+import 'package:teste_tokenlab/presentation/about_enterprise/about_enterprise_screen.dart';
+import 'package:teste_tokenlab/presentation/main_content/main_content_view.dart';
+import 'package:teste_tokenlab/presentation/movie/movie_details/movie_details_screen.dart';
+import 'package:teste_tokenlab/presentation/movie/movie_list/favorite_movies_screen.dart';
+import 'package:teste_tokenlab/presentation/movie/movie_list/movies_screen.dart';
 import 'package:teste_tokenlab/provider_setup/provider_setup.dart';
-import 'package:teste_tokenlab/view/main_content_view/main_content_view.dart';
 import 'package:teste_tokenlab/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:teste_tokenlab/view/movie_details_view/movie_details_screen.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:teste_tokenlab/view/movies_view/movies_screen.dart';
-import 'package:teste_tokenlab/view/movies_view/widgets/about_enterprise_screen.dart';
-import 'package:teste_tokenlab/view/movies_view/widgets/favorite_movies_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
