@@ -7,15 +7,18 @@ import 'package:teste_tokenlab/presentation/movie/movie_details/genre_list_movie
 import 'package:teste_tokenlab/presentation/movie/movie_details/movie_details_bloc.dart';
 import 'package:teste_tokenlab/presentation/movie/movie_details/production_company_list_movie_details_widget_view.dart';
 import 'package:teste_tokenlab/presentation/common/dialog_widget_view.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 class MovieDetailsWidgetView extends StatefulWidget {
   const MovieDetailsWidgetView({
     required this.movieDetails,
     required this.movieDetailsBloc,
+    required this.analytics,
     Key? key,
   }) : super(key: key);
   final MovieDetails movieDetails;
   final MovieDetailsBloc movieDetailsBloc;
+  final FirebaseAnalytics analytics;
 
   @override
   _MovieDetailsWidgetViewState createState() => _MovieDetailsWidgetViewState();
@@ -85,6 +88,11 @@ class _MovieDetailsWidgetViewState extends State<MovieDetailsWidgetView> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          widget.analytics.logEvent(
+                              name: 'toggle_favorite_movie',
+                              parameters: {
+                                'isFavorite': widget.movieDetails.isFavorite
+                              });
                           widget.movieDetailsBloc.onFavoriteMovieInput
                               .add(null);
                         },

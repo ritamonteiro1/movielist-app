@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,56 +17,77 @@ import 'package:teste_tokenlab/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_analytics/observer.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  await runZonedGuarded<Future<void>>(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+    Hive
+      ..init((await getApplicationDocumentsDirectory()).path)
+      ..registerAdapter<MovieCM>(MovieCMAdapter())
+      ..registerAdapter<MovieDetailsCM>(MovieDetailsCMAdapter())
+      ..registerAdapter<ProductionCompanyCM>(ProductionCompanyCMAdapter());
 
-  Hive
-    ..init((await getApplicationDocumentsDirectory()).path)
-    ..registerAdapter<MovieCM>(MovieCMAdapter())
-    ..registerAdapter<MovieDetailsCM>(MovieDetailsCMAdapter())
-    ..registerAdapter<ProductionCompanyCM>(ProductionCompanyCMAdapter());
-
-  FluroRouter.appRouter
-    ..define(
-      '/',
-      handler: Handler(
-        handlerFunc: (context, params) => const MainContentView(),
-      ),
-    )
-    ..define(
-      'movies',
-      handler: Handler(
-        handlerFunc: (context, params) => MoviesScreen.create(context!),
-      ),
-    )
-    ..define(
-      'about-enterprise',
-      handler: Handler(
-        handlerFunc: (context, params) => const AboutEnterpriseScreen(),
-      ),
-    )
-    ..define(
-      'favorites-movie',
-      handler: Handler(
-        handlerFunc: (context, params) => FavoriteMoviesScreen.create(context!),
-      ),
-    )
-    ..define(
-      'movie-details/:movieId',
-      handler: Handler(
-        handlerFunc: (context, params) {
-          final movieId = int.parse(params['movieId']![0]);
-          return MovieDetailsScreen.create(context!, movieId);
-        },
-      ),
-    );
-  runApp(const MyApp());
+    FluroRouter.appRouter
+      ..define(
+        '/',
+        handler: Handler(
+          handlerFunc: (context, params) => const MainContentView(),
+        ),
+      )
+      ..define(
+        'movies',
+        handler: Handler(
+          handlerFunc: (context, params) => MoviesScreen.create(context!),
+        ),
+      )
+      ..define(
+        'about-enterprise',
+        handler: Handler(
+          handlerFunc: (context, params) => const AboutEnterpriseScreen(),
+        ),
+      )
+      ..define(
+        'favorites-movie',
+        handler: Handler(
+          handlerFunc: (context, params) =>
+              FavoriteMoviesScreen.create(context!),
+        ),
+      )
+      ..define(
+        'movie-details/:movieId',
+        handler: Handler(
+          handlerFunc: (context, params) {
+            final movieId = int.parse(params['movieId']![0]);
+            return MovieDetailsScreen.create(context!, movieId);
+          },
+        ),
+      );
+    runApp(MyApp.create());
+  }, (error, stack) => FirebaseCrashlytics.instance.recordError(error, stack));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  const MyApp({
+    required this.firebaseAnalytics,
+    Key? key,
+  }) : super(key: key);
+  final FirebaseAnalytics firebaseAnalytics;
 
+  static Widget create() => Provider<FirebaseAnalytics>(
+      create: (_) => FirebaseAnalytics(),
+      builder: (context, _) =>
+          MyApp(firebaseAnalytics: context.read<FirebaseAnalytics>()));
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) => MultiProvider(
         providers: providers,
@@ -80,6 +104,9 @@ class MyApp extends StatelessWidget {
           onGenerateRoute: (settings) => FluroRouter.appRouter
               .matchRoute(context, settings.name, routeSettings: settings)
               .route,
+          navigatorObservers: [
+            FirebaseAnalyticsObserver(analytics: widget.firebaseAnalytics),
+          ],
         ),
       );
 }

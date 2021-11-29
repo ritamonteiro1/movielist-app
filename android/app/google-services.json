@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "843455264827",
+    "project_id": "desafio-teste-tokenlab",
+    "storage_bucket": "desafio-teste-tokenlab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843455264827:android:b92edcd5325736f543041e",
+        "android_client_info": {
+          "package_name": "com.example.teste_tokenlab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843455264827-nkrf1i8u2vqm14mqvjhl6qpnp9rmv63j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgR1uyQE6etd1aA3P2RJ0vzYCYHKxRKVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843455264827-nkrf1i8u2vqm14mqvjhl6qpnp9rmv63j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

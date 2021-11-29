@@ -1,6 +1,7 @@
 import 'package:domain/domain/use_case/add_favorite_movie_uc.dart';
 import 'package:domain/domain/use_case/get_movie_details_uc.dart';
 import 'package:domain/domain/use_case/remove_favorite_movie_uc.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:teste_tokenlab/presentation/common/async_snapshot_movies_response_view.dart';
@@ -13,26 +14,30 @@ class MovieDetailsScreen extends StatefulWidget {
   const MovieDetailsScreen({
     required this.movieId,
     required this.movieDetailsBloc,
+    required this.firebaseAnalytics,
     Key? key,
   }) : super(key: key);
   final int movieId;
   final MovieDetailsBloc movieDetailsBloc;
+  final FirebaseAnalytics firebaseAnalytics;
 
-  static Widget create(BuildContext context, int movieId) => ProxyProvider3<
+  static Widget create(BuildContext context, int movieId) => ProxyProvider4<
+          FirebaseAnalytics,
           GetMovieDetailsUC,
           AddFavoriteMovieUC,
           RemoveFavoriteMovieUC,
           MovieDetailsBloc>(
-        update: (context, getMovieDetailsUC, addFavoriteMovieUC,
+        update: (context, analytics, getMovieDetailsUC, addFavoriteMovieUC,
                 removeFavoriteMovieUC, bloc) =>
             bloc ??
             MovieDetailsBloc(getMovieDetailsUC, addFavoriteMovieUC,
                 removeFavoriteMovieUC, movieId),
         dispose: (context, bloc) => bloc.dispose(),
-        child: Consumer<MovieDetailsBloc>(
-          builder: (context, bloc, _) => MovieDetailsScreen(
+        child: Consumer2<FirebaseAnalytics, MovieDetailsBloc>(
+          builder: (context, analytics, bloc, _) => MovieDetailsScreen(
             movieDetailsBloc: bloc,
             movieId: movieId,
+            firebaseAnalytics: analytics,
           ),
         ),
       );
@@ -72,6 +77,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
               return MovieDetailsWidgetView(
                 movieDetails: movieDetails,
                 movieDetailsBloc: widget.movieDetailsBloc,
+                analytics: widget.firebaseAnalytics,
               );
             },
           ));

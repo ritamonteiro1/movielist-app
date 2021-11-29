@@ -18,7 +18,7 @@ List<SingleChildWidget> providers = [
 
 List<SingleChildWidget> independentServices = [
   Provider.value(value: Dio()),
-  Provider.value(value: MovieCacheDataSource())
+  Provider.value(value: MovieCacheDataSource()),
 ];
 
 List<SingleChildWidget> dependentServices = [
