@@ -22,7 +22,7 @@ class AsyncSnapshotMoviesResponseView<Loading, Error, Success>
   Widget build(BuildContext context) {
     final snapshotData = snapshot.data;
     if (snapshotData == null || snapshotData is Loading) {
-      return const LoadingWidgetView();
+      return const LoadingWidgetView(key: ValueKey('loading-widget'));
     }
 
     if (snapshotData is Error) {

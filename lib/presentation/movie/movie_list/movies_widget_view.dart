@@ -6,7 +6,7 @@ class MoviesWidgetView extends StatelessWidget {
   const MoviesWidgetView({
     required this.appBarTitle,
     required this.movies,
-    Key? key,
+    required Key key,
   }) : super(key: key);
   final List<Movie> movies;
   final String appBarTitle;

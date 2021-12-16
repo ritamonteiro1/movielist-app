@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:domain/domain/model/movie_details/details/movie_details.dart';
 import 'package:domain/domain/use_case/add_favorite_movie_uc.dart';
 import 'package:domain/domain/use_case/get_movie_details_uc.dart';
 import 'package:domain/domain/use_case/remove_favorite_movie_uc.dart';
@@ -27,7 +26,6 @@ class MovieDetailsBloc {
   final GetMovieDetailsUC getMovieDetailsUC;
   final AddFavoriteMovieUC addFavoriteMovieUC;
   final RemoveFavoriteMovieUC removeFavoriteMovieUC;
-  late MovieDetails _movieDetails;
 
   final _subscriptions = CompositeSubscription();
   final _onTryAgain = StreamController<void>();
@@ -46,9 +44,8 @@ class MovieDetailsBloc {
     yield MovieDetailsLoadingState();
 
     try {
-      _movieDetails = await getMovieDetailsUC.getFuture(
-          params: GetMovieDetailsUCParams(_movieId));
-      yield MovieDetailsSuccessState(_movieDetails);
+      yield MovieDetailsSuccessState(await getMovieDetailsUC.getFuture(
+          params: GetMovieDetailsUCParams(_movieId)));
     } catch (e) {
       yield MovieDetailsErrorState();
     }
@@ -60,19 +57,25 @@ class MovieDetailsBloc {
       _publishSubject.stream;
 
   Stream<MovieDetailsResultState> _toFavoriteMovie() async* {
-    try {
-      if (!_movieDetails.isFavorite) {
-        await addFavoriteMovieUC.getFuture(
-            params: AddFavoriteMovieUCParams(_movieId));
-        _publishSubject.add(SuccessAddFavoriteMovie());
-      } else {
-        await removeFavoriteMovieUC.getFuture(
-            params: RemoveFavoriteMovieUCParams(_movieId));
-        _publishSubject.add(SuccessRemoveFavoriteMovie());
+    final movieDetailsResultState = _behaviorSubject.stream.value;
+    if (movieDetailsResultState is MovieDetailsSuccessState) {
+      try {
+        if (!movieDetailsResultState.movieDetails.isFavorite) {
+          await addFavoriteMovieUC.getFuture(
+              params: AddFavoriteMovieUCParams(_movieId));
+          _publishSubject.add(SuccessAddFavoriteMovie());
+        } else {
+          await removeFavoriteMovieUC.getFuture(
+              params: RemoveFavoriteMovieUCParams(_movieId));
+          _publishSubject.add(SuccessRemoveFavoriteMovie());
+        }
+        movieDetailsResultState.movieDetails.isFavorite =
+            !movieDetailsResultState.movieDetails.isFavorite;
+        yield MovieDetailsSuccessState(movieDetailsResultState.movieDetails);
+      } catch (e) {
+        _publishSubject.add(ErrorAddOrRemoveFavoriteMovie());
       }
-      _movieDetails.isFavorite = !_movieDetails.isFavorite;
-      yield MovieDetailsSuccessState(_movieDetails);
-    } catch (e) {
+    } else {
       _publishSubject.add(ErrorAddOrRemoveFavoriteMovie());
     }
   }

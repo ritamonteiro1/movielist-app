@@ -56,14 +56,15 @@ class _MoviesScreenState extends State<MoviesScreen> {
               function: () {
                 widget.moviesBloc.onTryAgain.add(null);
               },
+              key: const ValueKey('error-widget'),
             ),
             successWidgetBuilder: (context, successState) {
               final movieList = successState.movies;
               return MoviesWidgetView(
-                movies: movieList,
-                appBarTitle:
-                    S.of(context).successfullyRequestMoviesViewAppBarTitle,
-              );
+                  movies: movieList,
+                  appBarTitle:
+                      S.of(context).successfullyRequestMoviesViewAppBarTitle,
+                  key: const ValueKey('movie-list-success-widget'));
             },
           ));
 }

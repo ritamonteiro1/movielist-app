@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:domain/domain/use_case/get_movie_list_uc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:teste_tokenlab/presentation/movie/movie_list/movies_result_state.dart';
@@ -27,10 +28,9 @@ class MoviesBloc {
 
   Stream<MoviesResultState> _fetchMovieList() async* {
     yield MoviesLoadingState();
-
     try {
-      yield MoviesSuccessState(
-          await getMovieListUseCase.getFuture(params: null));
+      final movieList = await getMovieListUseCase.getFuture(params: null);
+      yield MoviesSuccessState(movieList);
     } catch (e) {
       yield MoviesErrorState();
     }

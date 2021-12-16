@@ -38,7 +38,7 @@ class FavoritesMovieBloc {
       } else {
         yield FavoritesMovieNoResultState();
       }
-    } catch (EmptyFavoriteListException) {
+    } catch (e) {
       yield FavoritesMovieNoResultState();
     }
   }

@@ -71,14 +71,15 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
               function: () {
                 widget.movieDetailsBloc.onTryAgain.add(null);
               },
+              key: const ValueKey('error-widget'),
             ),
             successWidgetBuilder: (context, successState) {
               final movieDetails = successState.movieDetails;
               return MovieDetailsWidgetView(
-                movieDetails: movieDetails,
-                movieDetailsBloc: widget.movieDetailsBloc,
-                analytics: widget.firebaseAnalytics,
-              );
+                  movieDetails: movieDetails,
+                  movieDetailsBloc: widget.movieDetailsBloc,
+                  analytics: widget.firebaseAnalytics,
+                  key: const ValueKey('movie-details-success-widget'));
             },
           ));
 }

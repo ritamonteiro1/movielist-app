@@ -4,7 +4,7 @@ import '../data_repository/movie_data_repository.dart';
 
 import '../model/movies/movie.dart';
 
-class GetMovieListUC extends UseCase<void, List<Movie>> {
+class GetMovieListUC extends UseCase<Null, List<Movie>> {
   GetMovieListUC(
     this.movieDataRepository,
   );
@@ -12,6 +12,6 @@ class GetMovieListUC extends UseCase<void, List<Movie>> {
   final MovieDataRepository movieDataRepository;
 
   @override
-  Future<List<Movie>> getRawFuture({required void params}) =>
+  Future<List<Movie>> getRawFuture({required Null params}) async =>
       movieDataRepository.fetchMovieList();
 }

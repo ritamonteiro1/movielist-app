@@ -4,7 +4,7 @@ import 'package:teste_tokenlab/generated/l10n.dart';
 class ErrorWidgetView extends StatelessWidget {
   const ErrorWidgetView({
     required this.function,
-    Key? key,
+    required Key key,
   }) : super(key: key);
   final Function() function;
 

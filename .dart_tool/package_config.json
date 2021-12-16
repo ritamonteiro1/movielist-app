@@ -164,6 +164,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "equatable",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/equatable-2.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "fake_async",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0",
       "packageUri": "lib/",
@@ -674,7 +680,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-11-25T20:02:17.580227Z",
+  "generated": "2021-12-01T18:37:17.637724Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }

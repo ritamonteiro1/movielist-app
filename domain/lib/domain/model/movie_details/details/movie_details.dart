@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 
 import '../production_company/production_company.dart';
 
-class MovieDetails {
+class MovieDetails extends Equatable {
   MovieDetails(this.genres, this.originalTitle, this.posterUrl,
       this.productionCompanies, this.title, this.voteAverage, this.id,
       {this.isFavorite = false});
@@ -14,4 +15,16 @@ class MovieDetails {
   final double voteAverage;
   final int id;
   bool isFavorite;
+
+  @override
+  List<Object?> get props => [
+        genres,
+        originalTitle,
+        posterUrl,
+        productionCompanies,
+        title,
+        voteAverage,
+        id,
+        isFavorite,
+      ];
 }

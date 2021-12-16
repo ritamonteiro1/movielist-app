@@ -14,7 +14,7 @@ class MovieDetailsWidgetView extends StatefulWidget {
     required this.movieDetails,
     required this.movieDetailsBloc,
     required this.analytics,
-    Key? key,
+    required Key key,
   }) : super(key: key);
   final MovieDetails movieDetails;
   final MovieDetailsBloc movieDetailsBloc;
@@ -62,127 +62,124 @@ class _MovieDetailsWidgetViewState extends State<MovieDetailsWidgetView> {
         body: Padding(
           padding: const EdgeInsets.only(left: 6, top: 3, right: 6, bottom: 3),
           child: SingleChildScrollView(
-            child: Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    widget.movieDetails.title,
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(S
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  widget.movieDetails.title,
+                  style: const TextStyle(fontSize: 20),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(S
+                        .of(context)
+                        .successfullyRequestMovieDetailsViewToFavoriteMovie),
+                    const SizedBox(
+                      width: 2,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        widget.analytics.logEvent(
+                            name: 'toggle_favorite_movie',
+                            parameters: {
+                              'isFavorite': widget.movieDetails.isFavorite
+                            });
+                        widget.movieDetailsBloc.onFavoriteMovieInput.add(null);
+                      },
+                      child: Icon(Icons.star,
+                          color: widget.movieDetails.isFavorite
+                              ? Colors.yellow
+                              : Colors.grey),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                FadeInImage(
+                  height: 180,
+                  width: 100,
+                  image: NetworkImage(widget.movieDetails.posterUrl),
+                  placeholder: const AssetImage(ConstantsImages.imageLoading),
+                  imageErrorBuilder: (context, error, stackTrace) =>
+                      Image.asset(ConstantsImages.imageError,
+                          height: 180, width: 100, fit: BoxFit.fitWidth),
+                  fit: BoxFit.fitWidth,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      S
                           .of(context)
-                          .successfullyRequestMovieDetailsViewToFavoriteMovie),
-                      const SizedBox(
-                        width: 2,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          widget.analytics.logEvent(
-                              name: 'toggle_favorite_movie',
-                              parameters: {
-                                'isFavorite': widget.movieDetails.isFavorite
-                              });
-                          widget.movieDetailsBloc.onFavoriteMovieInput
-                              .add(null);
-                        },
-                        child: Icon(Icons.star,
-                            color: widget.movieDetails.isFavorite
-                                ? Colors.yellow
-                                : Colors.grey),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  FadeInImage(
-                    height: 180,
-                    width: 100,
-                    image: NetworkImage(widget.movieDetails.posterUrl),
-                    placeholder: const AssetImage(ConstantsImages.imageLoading),
-                    imageErrorBuilder: (context, error, stackTrace) =>
-                        Image.asset(ConstantsImages.imageError,
-                            height: 180, width: 100, fit: BoxFit.fitWidth),
-                    fit: BoxFit.fitWidth,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        S
-                            .of(context)
-                            .successfullyRequestMovieDetailsViewVoteAverageText,
-                      ),
-                      const SizedBox(
-                        width: 2,
-                      ),
-                      Text(widget.movieDetails.voteAverage.toString()),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    S
-                        .of(context)
-                        .successfullyRequestMovieDetailsViewTitleOriginText,
-                    style: const TextStyle(
-                        color: Colors.grey, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Text(widget.movieDetails.originalTitle),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    S.of(context).successfullyRequestMovieDetailsViewGenreText(
-                        widget.movieDetails.genres.length),
-                    style: const TextStyle(
-                        color: Colors.grey, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  GenreListMovieDetailsWidgetView(
-                      genderListMovieDetails: widget.movieDetails.genres),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    S
-                        .of(context)
-                        .successfullyRequestMovieDetailsViewProductionCompanies(
-                            widget.movieDetails.productionCompanies.length),
-                    style: const TextStyle(
-                        color: Colors.grey, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  ProductionCompanyListMovieDetailsWidgetView(
-                      productionCompanyList:
-                          widget.movieDetails.productionCompanies),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                ],
-              ),
+                          .successfullyRequestMovieDetailsViewVoteAverageText,
+                    ),
+                    const SizedBox(
+                      width: 2,
+                    ),
+                    Text(widget.movieDetails.voteAverage.toString()),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  S
+                      .of(context)
+                      .successfullyRequestMovieDetailsViewTitleOriginText,
+                  style: const TextStyle(
+                      color: Colors.grey, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(widget.movieDetails.originalTitle),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  S.of(context).successfullyRequestMovieDetailsViewGenreText(
+                      widget.movieDetails.genres.length),
+                  style: const TextStyle(
+                      color: Colors.grey, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                GenreListMovieDetailsWidgetView(
+                    genderListMovieDetails: widget.movieDetails.genres),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  S
+                      .of(context)
+                      .successfullyRequestMovieDetailsViewProductionCompanies(
+                          widget.movieDetails.productionCompanies.length),
+                  style: const TextStyle(
+                      color: Colors.grey, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                ProductionCompanyListMovieDetailsWidgetView(
+                    productionCompanyList:
+                        widget.movieDetails.productionCompanies),
+                const SizedBox(
+                  height: 12,
+                ),
+              ],
             ),
           ),
         ),

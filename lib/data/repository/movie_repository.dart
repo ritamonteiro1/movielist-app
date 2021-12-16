@@ -25,19 +25,19 @@ class MovieRepository implements MovieDataRepository {
           await _movieCacheDataSource.getMovieDetails(movieId);
       final favoriteMovieIdListCM =
           await _movieCacheDataSource.getFavoriteMovieIdList();
-      final movieDetailsDM = movieDetailsCM.toMovieDetailsDM();
-      movieDetailsDM.isFavorite =
-          favoriteMovieIdListCM.contains(movieDetailsDM.id);
-      return movieDetailsDM;
+      final movieDetailsModel = movieDetailsCM.toMovieDetailsDM();
+      movieDetailsModel.isFavorite =
+          favoriteMovieIdListCM.contains(movieDetailsModel.id);
+      return movieDetailsModel;
     } catch (e) {
       final movieDetailsCM =
           await _movieCacheDataSource.getMovieDetails(movieId);
       final favoriteMovieIdListCM =
           await _movieCacheDataSource.getFavoriteMovieIdList();
-      final movieDetailsDM = movieDetailsCM.toMovieDetailsDM();
-      movieDetailsDM.isFavorite =
-          favoriteMovieIdListCM.contains(movieDetailsDM.id);
-      return movieDetailsDM;
+      final movieDetailsModel = movieDetailsCM.toMovieDetailsDM();
+      movieDetailsModel.isFavorite =
+          favoriteMovieIdListCM.contains(movieDetailsModel.id);
+      return movieDetailsModel;
     }
   }
 

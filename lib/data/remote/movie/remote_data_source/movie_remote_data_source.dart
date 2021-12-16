@@ -8,17 +8,17 @@ class MovieRemoteDataSource {
   );
 
   final Dio _dio;
-  static const String baseUrlMovieList =
+  final String _baseUrlMovieList =
       'https://desafio-mobile.nyc3.digitaloceanspaces.com/movies';
 
   Future<MovieDetailsRM> fetchMovieDetails(int movieId) async {
-    final response = await _dio.get('$baseUrlMovieList${'/$movieId'}');
+    final response = await _dio.get('$_baseUrlMovieList${'/$movieId'}');
     final movieDetailsRM = MovieDetailsRM.fromJson(response.data);
     return movieDetailsRM;
   }
 
   Future<List<MovieRM>> fetchMovieList() async {
-    final response = await _dio.get(baseUrlMovieList);
+    final response = await _dio.get(_baseUrlMovieList);
     final List<MovieRM> movieListRM =
         (response.data.map((item) => MovieRM.fromJson(item)).toList())
             .cast<MovieRM>();

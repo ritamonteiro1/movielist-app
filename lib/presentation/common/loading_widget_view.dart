@@ -3,7 +3,7 @@ import 'package:teste_tokenlab/generated/l10n.dart';
 
 class LoadingWidgetView extends StatelessWidget {
   const LoadingWidgetView({
-    Key? key,
+    required Key key,
   }) : super(key: key);
 
   @override

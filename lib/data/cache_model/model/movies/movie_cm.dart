@@ -1,11 +1,12 @@
 import 'package:hive/hive.dart';
+import 'package:equatable/equatable.dart';
+
 part 'movie_cm.g.dart';
 
-
 @HiveType(typeId: 0)
-class MovieCM {
-  MovieCM(this.id, this.voteAverage, this.title, this.posterUrl,
-      this.releaseDate);
+class MovieCM extends Equatable {
+  MovieCM(
+      this.id, this.voteAverage, this.title, this.posterUrl, this.releaseDate);
 
   @HiveField(0)
   final int id;
@@ -18,4 +19,12 @@ class MovieCM {
   @HiveField(4)
   final String releaseDate;
 
+  @override
+  List<Object?> get props => [
+        id,
+        voteAverage,
+        title,
+        posterUrl,
+        releaseDate,
+      ];
 }
